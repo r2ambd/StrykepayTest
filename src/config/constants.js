@@ -1,5 +1,5 @@
 const defaultConfig = {
-  PORT: process.env.PORT || 2000
+  PORT: process.env.PORT || 3000
 };
 const username = "dbuser";
 const password = "I1Od6gCgoK7TtT88";

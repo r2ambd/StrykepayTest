@@ -1,0 +1,11 @@
+version: "3"
+services:
+  builder:
+    image: builder:latest
+    build:
+      dockerfile: dockerfile
+      context: .
+  development:
+    build:
+      dockerfile: Dockerfile.dev
+      context: .
