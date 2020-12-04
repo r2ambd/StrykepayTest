@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev:build": "cross-env NODE_ENV=development webpack -w",
-    "dev": "cross-env NODE_ENV=development nodemon dist/index.bundle.js"
+    "dev": "cross-env NODE_ENV=development nodemon dist/index.bundle.js",
+    "abdu": "cross-env NODE_ENV=development webpack -w && nodemon dist/index.bundle.js"
   },
   "dependencies": {
     "@babel/core": "^7.12.7",

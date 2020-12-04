@@ -7,7 +7,7 @@ import momentTZ from "moment-timezone";
 
 export async function update(req, res) {
   const { error } = updateUserName(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).json(error.details[0].message);
 
   const user = await User.findOneAndUpdate(
     { email: req.user.email },
@@ -24,6 +24,12 @@ export async function update(req, res) {
     date: date
   });
   await track.save();
+
+  await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $push: { actions: track._id } },
+    { new: true }
+  );
 
   res.status(200).json(user);
 }

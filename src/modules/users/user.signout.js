@@ -12,5 +12,11 @@ export async function singout(req, res) {
   });
   await track.save();
 
+  await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $push: { actions: track._id } },
+    { new: true }
+  );
+
   res.status(200).json("Loged Out");
 }

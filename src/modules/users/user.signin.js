@@ -6,7 +6,7 @@ import momentTZ from "moment-timezone";
 
 export async function signIn(req, res) {
   const { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).json(error.details[0].message);
 
   let user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).json("Invalid email or password");
@@ -23,6 +23,12 @@ export async function signIn(req, res) {
     date: date
   });
   await track.save();
+
+  await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $push: { actions: track._id } },
+    { new: true }
+  );
 
   const token = await user.generateAuthToken();
 

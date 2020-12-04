@@ -44,11 +44,19 @@ const UserSchema = new Schema({
       },
       message: "{VALUE} is not a valid password!"
     }
-  }
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false
+  },
+  actions: [{ type: Schema.Types.ObjectId, ref: "Track" }]
 });
 
 UserSchema.methods.generateAuthToken = async function() {
-  const token = jwt.sign({ _id: this._id, email: this.email }, key.JWT_KEY);
+  const token = jwt.sign(
+    { _id: this._id, email: this.email, isAdmin: this.isAdmin },
+    key.JWT_KEY
+  );
 
   return token;
 };
