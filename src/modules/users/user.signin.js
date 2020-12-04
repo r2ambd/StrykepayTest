@@ -25,7 +25,7 @@ export async function signIn(req, res) {
   await track.save();
 
   await User.findOneAndUpdate(
-    { _id: req.user._id },
+    { email: user.email },
     { $push: { actions: track._id } },
     { new: true }
   );
