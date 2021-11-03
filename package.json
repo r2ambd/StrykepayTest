@@ -21,7 +21,7 @@
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",
     "mongoose": "^5.10.15",
-    "validator": "^13.1.17"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
